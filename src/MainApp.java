@@ -100,6 +100,8 @@ public class MainApp extends PApplet {
                 pikachu.reduceHealth();
                 if(pikachu.isAbleToFight() == false){
                     ATTACK_STATE = false;
+                    gameStatus = "You have died... resetting the game";
+                    victories = 0;
                 }
             }
         };
