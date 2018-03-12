@@ -39,4 +39,13 @@ public class Pokemon {
         int  n = rand.nextInt(10) + 1; // 1 to 25 life less inclusive
         health += n;
     }
+
+    public boolean isAbleToFight(){
+        if(health <= 0){
+            health = 100; // return back to full health;
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

@@ -1,8 +1,8 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 import java.util.Random;
-
-import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainApp extends PApplet {
     private PImage plaingrass;
@@ -13,6 +13,7 @@ public class MainApp extends PApplet {
     private int playerY = 0;
     private boolean ATTACK_STATE = true;
     private AttackState a1;
+    private Timer myTimer;
 
     public static void main(String args[]){
         PApplet.main("MainApp",args);
@@ -29,7 +30,6 @@ public class MainApp extends PApplet {
     }
     public void setup(){
         background(255);
-//        surface.setResizable(true);
         frameRate(30);
         a1 = new AttackState(this);
         player = new Character(this);
@@ -82,14 +82,33 @@ public class MainApp extends PApplet {
             }
         }
     }
+    public void scheduleHit(){
+        myTimer = new Timer();
+        TimerTask tt = new TimerTask(){
+            public void run(){
+                System.out.println("enemy attacked you");
+                a1.enemyAttacksPlayer(pikachu);
+            }
+        };
+        myTimer.schedule(tt, 2000);
+    }
 
     public void handleClick(Pokemon pokemon){
         if(mouseX > 400 && mouseX < 480 && mouseY > 400 && mouseY < 420){
-            a1.enemyAttacked();
+            a1.attackEnemy();
             a1.reduceEnemyHealth();
+
+
+            if(a1.canEnemyFight() == false){ // if enemy cannot fight
+                ATTACK_STATE = false;
+            }else{
+                myTimer = new Timer();
+                scheduleHit();
+            }
         }else if(mouseX > 500 && mouseX < 580 && mouseY > 400 && mouseY < 420){
             a1.playerHealed();
             pokemon.increaseHealth();
+            scheduleHit();
         }else if(mousePressed && mouseX > 600 && mouseX < 680 && mouseY > 400 && mouseY < 420){
             ATTACK_STATE = false;
         }
@@ -104,5 +123,6 @@ public class MainApp extends PApplet {
             return false;
         }
     }
+
 
 }
