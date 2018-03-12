@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.Random;
 
 public class MainApp extends PApplet {
-    private Remote r1;
     private PImage plaingrass;
     private PImage attackbackground;
     private Character player;
@@ -25,7 +24,6 @@ public class MainApp extends PApplet {
         background(255);
         surface.setResizable(true);
         frameRate(30);
-        r1 = new Remote(this);
         player = new Character(this);
     }
     public void draw(){
