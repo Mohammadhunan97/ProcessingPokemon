@@ -1,5 +1,7 @@
 import processing.core.PApplet;
 
+import java.util.Random;
+
 public class AttackState {
     private PApplet parent;
     private String infoText = "Get ready for battle ...";
@@ -9,7 +11,16 @@ public class AttackState {
 
     public AttackState(PApplet parent) {
         this.parent = parent;
-        this.enemy = new Pokemon(parent,"assets/weedle.png","Weedle");
+        Random rand = new Random();
+        int  n = rand.nextInt(3) + 1; // 1 to 25 life less inclusive
+        if(n == 1){
+            this.enemy = new Pokemon(parent,"assets/weedle.png","Weedle");
+        }else if(n == 2){
+            this.enemy = new Pokemon(parent,"assets/pidgey.png","Pidgey");
+        }else{
+            this.enemy = new Pokemon(parent,"assets/rattata.png","Rattata");
+        }
+
     }
     public void load(Pokemon pokemon){
         this.enemyHealthStatus = "Health: " + this.enemy.getHealth();
