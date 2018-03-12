@@ -73,8 +73,7 @@ public class AttackState {
         infoText = "You have healed your pokemon";
     }
 
-    public void enemyAttacksPlayer(Pokemon pokemon){
+    public void enemyAttacksPlayer(){
         infoText = enemy.getName() + " has attacked!";
-        pokemon.reduceHealth();
     }
 }

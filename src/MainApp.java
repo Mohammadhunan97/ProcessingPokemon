@@ -11,7 +11,7 @@ public class MainApp extends PApplet {
     private Pokemon pikachu;
     private int playerX = 0;
     private int playerY = 0;
-    private boolean ATTACK_STATE = true;
+    private boolean ATTACK_STATE = false;
     private AttackState a1;
     private Timer myTimer;
 
@@ -87,7 +87,11 @@ public class MainApp extends PApplet {
         TimerTask tt = new TimerTask(){
             public void run(){
                 System.out.println("enemy attacked you");
-                a1.enemyAttacksPlayer(pikachu);
+                a1.enemyAttacksPlayer();
+                pikachu.reduceHealth();
+                if(pikachu.isAbleToFight() == false){
+                    ATTACK_STATE = false;
+                }
             }
         };
         myTimer.schedule(tt, 2000);
