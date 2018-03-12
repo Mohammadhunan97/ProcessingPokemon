@@ -30,9 +30,9 @@ public class AttackState {
 
         createPlayerButtons();
 
-        if(parent.mousePressed){
-            handleClick(pokemon);
-        }
+//        if(parent.mousePressed){
+//            handleClick(pokemon);
+//        }
 
     }
 
@@ -60,15 +60,27 @@ public class AttackState {
         parent.text(infoText,50, 400);
 
     }
-    public void handleClick(Pokemon pokemon){
-        if(parent.mouseX > 400 && parent.mouseX < 480 && parent.mouseY > 400 && parent.mouseY < 420){
-            infoText = "You have attacked!";
-            enemy.reduceHealth();
-        }else if(parent.mouseX > 500 && parent.mouseX < 580 && parent.mouseY > 400 && parent.mouseY < 420){
-            infoText = "You have healed your pokemon";
-            pokemon.increaseHealth();
 
-        }
+    public void reduceEnemyHealth(){
+        enemy.reduceHealth();
     }
+
+    public void enemyAttacked(){
+        infoText = "You have attacked!";
+    }
+
+    public void playerHealed(){
+        infoText = "You have healed your pokemon";
+    }
+//    public void handleClick(Pokemon pokemon){
+//        if(parent.mouseX > 400 && parent.mouseX < 480 && parent.mouseY > 400 && parent.mouseY < 420){
+//            infoText = "You have attacked!";
+//            enemy.reduceHealth();
+//        }else if(parent.mouseX > 500 && parent.mouseX < 580 && parent.mouseY > 400 && parent.mouseY < 420){
+//            infoText = "You have healed your pokemon";
+//            pokemon.increaseHealth();
+//
+//        }
+//    }
 
 }

@@ -46,9 +46,9 @@ public class MainApp extends PApplet {
             attackbackground.resize(width,height);
             image(attackbackground,0,0);
             a1.load(pikachu);
-            
-            if(mousePressed && mouseX > 600 && mouseX < 680 && mouseY > 400 && mouseY < 420){
-                ATTACK_STATE = false;
+
+            if(mousePressed){
+                handleClick(pikachu);
             }
         }
 
@@ -80,6 +80,18 @@ public class MainApp extends PApplet {
                 playerX -= 4;
                 ATTACK_STATE = isUnderAttack();
             }
+        }
+    }
+
+    public void handleClick(Pokemon pokemon){
+        if(mouseX > 400 && mouseX < 480 && mouseY > 400 && mouseY < 420){
+            a1.enemyAttacked();
+            a1.reduceEnemyHealth();
+        }else if(mouseX > 500 && mouseX < 580 && mouseY > 400 && mouseY < 420){
+            a1.playerHealed();
+            pokemon.increaseHealth();
+        }else if(mousePressed && mouseX > 600 && mouseX < 680 && mouseY > 400 && mouseY < 420){
+            ATTACK_STATE = false;
         }
     }
 
