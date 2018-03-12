@@ -14,11 +14,12 @@ public class MainApp extends PApplet {
     }
     public void setup(){
         background(255);
+        surface.setResizable(true);
+        frameRate(30);
     }
     public void draw(){
         plaingrass.resize(width,height);
         image(plaingrass,0,0);
-
     }
     void reset(){
     }
