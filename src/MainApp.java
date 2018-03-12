@@ -14,6 +14,8 @@ public class MainApp extends PApplet {
     private boolean ATTACK_STATE = false;
     private AttackState a1;
     private Timer myTimer;
+    private int victories = 0;
+    private String gameStatus;
 
     public static void main(String args[]){
         PApplet.main("MainApp",args);
@@ -36,12 +38,19 @@ public class MainApp extends PApplet {
         pikachu = new Pokemon(this,"assets/pikachu.png","Pikachu");
     }
     public void draw(){
+        gameStatus = "You have won " + victories + " battles so far";
+
 
         if(ATTACK_STATE == false){
+            fill(255); // button background white
             handleMovements();
             plaingrass.resize(width,height);
             image(plaingrass,0,0);
             player.loadCharacter(playerX,playerY);
+
+            textSize(16);
+            fill(0);
+            text(gameStatus,width - 250,20);
         }else{
             attackbackground.resize(width,height);
             image(attackbackground,0,0);
@@ -105,6 +114,7 @@ public class MainApp extends PApplet {
 
             if(a1.canEnemyFight() == false){ // if enemy cannot fight
                 ATTACK_STATE = false;
+                victories += 1;
             }else{
                 myTimer = new Timer();
                 scheduleHit();
