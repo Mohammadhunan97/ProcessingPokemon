@@ -8,9 +8,11 @@ public class MainApp extends PApplet {
     private PImage plaingrass;
     private PImage attackbackground;
     private Character player;
+    private Pokemon pikachu;
     private int playerX = 0;
     private int playerY = 0;
     private boolean ATTACK_STATE = true;
+    private AttackState a1;
 
     public static void main(String args[]){
         PApplet.main("MainApp",args);
@@ -22,9 +24,11 @@ public class MainApp extends PApplet {
     }
     public void setup(){
         background(255);
-        surface.setResizable(true);
+//        surface.setResizable(true);
         frameRate(30);
+        a1 = new AttackState(this);
         player = new Character(this);
+        pikachu = new Pokemon(this);
     }
     public void draw(){
 
@@ -36,13 +40,17 @@ public class MainApp extends PApplet {
         }else{
             attackbackground.resize(width,height);
             image(attackbackground,0,0);
+            a1.load(pikachu);
         }
 
     }
+
+
     private void reset(){
         playerX = 0;
         playerY = 0;
     }
+
 
     private void handleMovements(){
         if (keyPressed) {
