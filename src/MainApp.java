@@ -17,6 +17,11 @@ public class MainApp extends PApplet {
     public static void main(String args[]){
         PApplet.main("MainApp",args);
     }
+
+    public void setATTACK_STATE(boolean ATTACK_STATE) {
+        this.ATTACK_STATE = ATTACK_STATE;
+    }
+
     public void settings(){
        size(720, 480);
         plaingrass = loadImage("assets/plaingrass.png");
@@ -28,7 +33,7 @@ public class MainApp extends PApplet {
         frameRate(30);
         a1 = new AttackState(this);
         player = new Character(this);
-        pikachu = new Pokemon(this);
+        pikachu = new Pokemon(this,"assets/pikachu.png","Pikachu");
     }
     public void draw(){
 
@@ -41,6 +46,10 @@ public class MainApp extends PApplet {
             attackbackground.resize(width,height);
             image(attackbackground,0,0);
             a1.load(pikachu);
+            
+            if(mousePressed && mouseX > 600 && mouseX < 680 && mouseY > 400 && mouseY < 420){
+                ATTACK_STATE = false;
+            }
         }
 
     }
@@ -76,7 +85,7 @@ public class MainApp extends PApplet {
 
     public boolean isUnderAttack(){
         Random rand = new Random();
-        int  n = rand.nextInt(50) + 1; // 1 to 100 inclusive
+        int  n = rand.nextInt(50) + 1; // 1 to 50 inclusive
         if( n == 5){
             return true;
         }else{
