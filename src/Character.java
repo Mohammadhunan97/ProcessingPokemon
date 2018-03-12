@@ -7,6 +7,11 @@ public class Character {
 
     public Character(PApplet parent) {
         this.parent = parent;
+        Character = parent.loadImage("assets/player_right.png");
+    }
+
+    public void loadCharacter(){
+        parent.image(Character,0,0);
     }
 
 }
